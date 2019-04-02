@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+  <script src="main.js"></script>
+</head>
+<body>
+  <script>
+    /* symbol概念  独一无二的值*/
+    {
+      let a = Symbol();
+      let a2 = Symbol();
+      console.log(a === a2);
+      // 声明方式
+      let a3= Symbol.for('a3');
+      //  为a3 添加一个key值
+    }
+    /* symbol作用 */
+    {
+      let a = Symbol().for('abc');
+      let obj
+    }
+  </script>  
+</body>
+</html>
