@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <script>
+    /*
+      has 方法对对象的查询
+      
+    Map和Array的对比
+    
+    */
+    {
+      // 数据结构横向对比,增加,删除,修改,删除
+      let map = new Map();
+      let arr = [];
+      //增加
+      map.set('a',1);
+      arr.push({a:1});
+      // 查询
+      let map_exist = map.has('a');
+      let array_exist = arr.find(item => item.a);//find 方法返回?
+      //修改
+      map.set('a',2);
+      arr.forEach(item=>item.a?item.a=2:'');
+      //删除
+      map.delete('a');
+      let index = arr.findIndex(item=>item.a);
+      arr.splice(idnex,1);
+
+    }
+    </script>
+    <script>
+      // Set和Array的对比
+      let 
+    
+    </script>
+  
+</body>
+</html>

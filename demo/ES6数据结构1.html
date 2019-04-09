@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <script>
+    /*
+    Set和Map
+
+    Set 类比数组  Set中元素不允许重复
+    Map 类比对象  Map中  key值可以为任意元素
+
+    
+    */
+    {
+      // 定义一个 Set集合
+      let list = new Set();
+      // 添加元素 使用add方法
+      list.add(3);
+      list.add(5);
+      // 获取Set元素 使用size属性获取 元素的个数
+      let a = list.size;
+    }
+    {
+      //定义的第二种方式  可以接收一个数组，将数组转化为Set集合
+      let arr = [1,2,3,45,6];
+      let list = new Set(arr);
+    }
+    {
+      let list =[1,2,3]
+      // console.log(list);
+      let list2 = new Set(list);
+      // console.log(list2);
+      list2.add(4);
+      //向Set集合中添加重复的元素 并不会报错  但是不会生效。
+      list2.add(3);
+      // 利用这一特点，应用在数组去重。
+      {
+        let arr = [1,2,3,4,1,2];
+        let list2 = new Set(arr);
+        
+      }
+      // 需要特别注意的一点，就是Set中集合元素不能重复  是不会对元素进行类型转换的
+      // 即 '2' 和 2 是不相等的  通过 === 严格等于 进行比较的
+    }
+
+    {
+      // 常用方法
+      // 1.添加 add()
+      // 2.删除 delete()
+      // 3.清空 clear()
+      // 4.是否存在  has()
+      let arr = ['add','delete','clear','has'];
+      let list = new Set(arr);
+  
+      list.delete('add');
+      list.clear();
+      
+    }
+    {
+      // 遍历 可以使用for of  或者 foreach进行遍历
+      let arr = ['add','delete','clear','has'];
+      let list = new Set(arr);
+      // 
+      console.log(list.keys());
+      console.log(list.values());
+      // Set集合的kew和value是同一个值
+      for(let key of list.keys()){
+        console.log(key);
+      }
+      list.forEach(function(item){
+        console.log(item)
+      })
+    }
+    </script>
+    <script>
+    // weakSet
+      {
+        let weaklist = new WeakSet();
+        //和Set的区别1： 支持的数据类型不一样  WeakSet的元素只能是对象
+        //              弱引用  不会和垃圾回收机制挂钩 
+        // 引用一个变量 不是值拷贝 是地址的引用  不会检测该变量是否已经被回收掉 
+        // 没有size属性
+        // 没有clear方法
+        // 不能遍历
+
+      }
+    </script>
+  
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <script>
+    /*
+      Map  
+    */
+    {
+      // 不带参数的声明方法
+      let map = new Map()
+      let arr = ['123'];
+      // Map添加元素 用set方法
+      map.set(arr,456);
+      // Map获取元素 用get方法
+      map.get(arr);
+
+    }
+    {
+      // 第二种定义方式  带参数  接收一个数组  数组的每一项也是一个数组
+      let map = new Map([['a',123],['b',456]]);
+      cobsole.log(map);
+    }
+    {
+      //常用的属性和方法
+      //获取元素个数
+      let map = new Map([['a',123],['b',456]]);
+      map.size;
+      // 删除元素
+      map.delete('a');
+      // 清空
+      map.clear();
+      //遍历keys values entries forEach
+    }
+
+    {
+      // WeakMap 
+      let weakmap = new WeakMap();
+      //区别: 接收的key值必须是对象,不能是其他的
+      // 没有size属性 clear方法 不能遍历
+
+    }
+    </script>
+  
+</body>
+</html>

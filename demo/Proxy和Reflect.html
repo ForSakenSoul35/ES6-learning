@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <script>
+    /*
+    Proxy和Reflect
+    概念,使用场景
+    */
+    //概念:
+    let obj = {
+      time:'2019-04-09',
+      name:'net',
+      _r:123
+    };
+    // 原始对象存储真实对象
+    let monitor = new Proxy(obj,{
+      // 拦截对象的读取
+      get(target,key){
+        return target[key].replace('2019','2018')
+      }
+    });
+    console.log('get',monitor.time);
+    </script>
+  <!-- 在读取time之前 对操作进行拦截或者代理 -->
+</body>
+</html>
