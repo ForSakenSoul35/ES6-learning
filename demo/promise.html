@@ -291,6 +291,137 @@
       //输出顺序为 promise hi resolved
       // then 方法 指定的回调函数 会在所有同步任务执行完才会执行.
     }
+    {
+       const getJSON = function(url){
+         const promise =  new Promise(function(resolve,reject){
+           const handler = function(){
+             if (this.readyState != 4){
+               return;
+             }
+             if(this.statu === 200 ){
+               resolve(this.respone);
+             }else{
+               reject(new Error(this.statusText));
+             }
+           };
+           const client = new XMLHttpRequest();
+           client.open("GET",url);
+           client.onreadystatechange = handler;
+           client.responseText = "json";
+           client.setRequestHeader("Accept","application/json");
+           client.send();
+         })
+         return promise;
+       };
+       getJSON('/posts.json').then(function(json){
+         console.log('Contents:'+json);
+       },function(error){
+         console.error('出错了',error); 
+     
+       })
+       /*
+       调用resolve和reject带有参数时，参数也会被传递给回调函数
+       reject函数通常时Error对象的实例，表示抛出的错误。
+       
+       */
+    }
+    {
+      /*
+      
+      then 方法
+      Promise实例时具有then方法的 then方法是定义在原型对象Promise.prototype
+      
+      */
+      let ajax = function(){
+        return new Promise(function(resolve,reject){
+          setTimeout(resolve, 1000);
+        })
+      }
+      
+    }
+    {
+
+      /*
+      catch 方法
+
+      */
+     let ajax =  function(num){
+       return new Promise(function(resolve,reject){
+         if(num>5){
+           resolve()
+         }else{
+           throw new Error('出错了')
+         }
+       })
+     }
+     ajax(6).then(function(){
+       console.log('log',6);
+     }).catch(function(){
+       console.log('catch',error)
+     })
+    }
+
+    {
+      /*
+      Promise扩展
+      all,
+      */
+     //所有图片加载完再添加到页面
+     function loadImg(src){
+        return new Promise(function(resolve,reject){
+          let img = documentElement('img');
+          img.src = src ;
+          img.onload= function(){
+            resolve();
+          }
+          img.onerror = function(){
+            reject(error);
+          }
+        })
+     }
+     function showImgs(imgs){
+       imgs.forEach(function(img){
+         document.body.appendChild(img);
+       })
+       Promise.all([
+       loadImg('./1.png'),
+       loadImg('./2.png'),
+     ]).then(showImgs);
+     }
+     //把多个promise实例当作一个promise ，当所有的promise实例状态发生变化时，这个promise实例的状态才会发生变化
+     Promise.all([
+       loadImg('./1.png'),
+       loadImg('./2.png'),
+     ]).then(showImgs);
+    }
+    {
+      /*
+      promise.race
+      哪个先加载完 就只显示哪个
+      */
+      function loadImg(src){
+        return new Promise(function(resolve,reject){
+          let img = documentElement('img');
+          img.src = src ;
+          img.onload= function(){
+            resolve();
+          }
+          img.onerror = function(){
+            reject(error);
+          }
+        })
+     }
+     function showImgs(img){
+       let p = document.createElement('p');
+      p.appendChild(img);
+      document.body.appendChild(p);
+     }
+     Promise.race([
+       loadImg('./1.png'),
+       loadImg('./2.png'),
+     ]).then(showImgs);
+
+    }
   </script>
 </body>
 </html>

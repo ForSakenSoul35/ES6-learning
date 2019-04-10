@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <script>
+      /*
+        async函数
+        就是Generator函数的语法糖
+
+      */
+     {
+       const fs = require('fs');
+       const readFile = function(filename){
+         return new Promise(function(resolve,reject){
+           fs.readfile(fileName,function(error,data){
+             if(error) return reject(error);
+             resolve(data);
+           });
+         });
+       };
+
+       const gen = async function (){
+         const f1 = await readFile('./1.png');
+         const f2 = await readFile('./2.png');
+         console.log(f1.toString());
+         console.log(f2.toString());
+       }
+       /*
+       将Generator函数的星号换成 async 把yield换成await
+       改进：
+        1.Generator的执行必须靠执行器，所以才有了co模块，而async函数自带执行器，也就是说，async函数的执行
+        与普通函数一致，只需要一行。 asyncReadfile();
+        2. 更好的语义， 比起星号 以及yield 语义更清楚 async 表示函数里有异步操作，await表示紧跟在后面的表达式需要等待结果
+        3.更广的实用性
+        4.返回的是promise对象
+       */
+      {
+        async function getStockPriceByName(name){
+          const symbol = await getStockSymbol(name);
+          const stockPrice = await getStockPrice(symbol);
+          return stockPrice;
+        }
+        getStockPriceByName('goog').then(function(result){
+          console.log(result);
+        })
+      }
+     }
+    </script>
+  
+</body>
+</html>

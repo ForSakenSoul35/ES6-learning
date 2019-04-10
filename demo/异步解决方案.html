@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <script>
+      //获取产品数据
+      ajax('products.json',(products)=>{
+        console.log('AJAX/products>>>',JSON.parse([products]));
+        ajax('users.json',(users)=>{
+          console.log('AJAX/users>>>',JSON.parse(users));
+          ajax('products.json',(comments)=>{
+            console.log('AJAX/commments>>>',JSON.parse(comments));
+          });
+        });
+      });
+      //promise
+      function requestP(url){
+        return new Promise(function(resolve,reject){
+          ajax(url,(response)=>{
+            resolve(JSON.parse(responese));
+          })
+        })
+      }
+      requestP('products.json').then((products)=>{
+        console.log('Promise/products>>>',products);
+        return requestP('users.json');
+      }).then((users)=>{
+        console.log('Promise/users>>>',users);
+        return requestP('comments.json');
+      }).then((comments)=>{
+        console.log('Promises/comments',comments);
+      })
+      //generator函数
+      // await/async
+      //与promise结合使用
+      {
+        //封装Ajax
+        function requestP(url){
+          return new Promise(function(resolve,reject){
+            ajax(url,(response)=>{
+              resolve(JSON.parse(response));
+            })
+          })
+        }
+        async function getInfo(){
+          let data = await requestP('product.json');
+          let users = await requestP('users.json');
+          let comment = await requestP('comments.json');
+
+          console.log(data)
+          console.log(users)
+          console.log(comment)
+        }
+
+      }
+ 
+    </script>
+  
+</body>
+</html>

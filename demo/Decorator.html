@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+    <script>
+      /*
+      修饰器
+        基本概念：
+          修饰器是一个函数 
+          用来修改类的行为 -扩展类的行为
+
+      */
+     let readonly  = function(target,name,descriptor){
+       descriptor.writable = false;
+       return descriptor
+     };
+     class Test{
+       @readonly
+       time(){
+         return '2017-03-11'
+       }
+       let test = new Test();
+       console.log(test.time());
+     }
+    </script>
+  
+</body>
+</html>
